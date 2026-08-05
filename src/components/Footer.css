@@ -1,0 +1,38 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--footer-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: linear-gradient(rgba(11, 14, 17, 0.85) 30%, var(--bg));
+  z-index: 10;
+}
+
+.footer-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.footer-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.footer-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.footer-dot.is-active {
+  background: var(--accent);
+}

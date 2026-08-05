@@ -1,0 +1,33 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: linear-gradient(var(--bg), rgba(11, 14, 17, 0.85) 70%, transparent);
+  z-index: 10;
+}
+
+.header-logo {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.header-logo-accent {
+  color: var(--accent);
+}
+
+.header-link {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.header-link:hover {
+  color: var(--accent);
+}
