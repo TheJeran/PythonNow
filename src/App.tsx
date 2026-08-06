@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import Section from './components/Section'
 import { sections } from './content/sections'
 import './App.css'
-
+import { getPyodide } from './pyodide/pyodideProvider'
 export default function App() {
 	const scrollerRef = useRef<HTMLElement>(null)
 	const sectionRefs = useRef<(HTMLElement | null)[]>([])
@@ -30,6 +30,10 @@ export default function App() {
 	function goTo(index: number) {
 		sectionRefs.current[index]?.scrollIntoView({ behavior: 'smooth' })
 	}
+	useEffect(()=>{
+		// Load python module on load
+		getPyodide()
+	},[])
 
 	return (
 		<>
@@ -44,7 +48,7 @@ export default function App() {
 				eyebrow={s.eyebrow}
 				title={s.title}
 			>
-				<p>{s.body}</p>
+				{s.body}
 			</Section>
 			))}
 		</main>
