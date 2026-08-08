@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import * as Sections from './main/main'
+import * as Sections from './main/mainContent'
 import type { TocItem } from '../components/TableofContents'
 
 interface SectionConfig {
@@ -43,7 +43,7 @@ export const sections: SectionConfig[] = [
   {
     id: 'functions',
     eyebrow: '05 — Functions',
-    title: 'Bundling Behaviour',
+    title: 'Bundling Behavior',
     body: Sections.functions,
   },
   {

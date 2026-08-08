@@ -19,6 +19,19 @@
   --footer-h: 3.25rem;
 }
 
+.highlight{
+  color: var(--accent)
+}
+
+.code-inline {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  color: #24292e;
+  background-color: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: -0.2em 0.4em;
+}
+
 * {
   box-sizing: border-box;
 }

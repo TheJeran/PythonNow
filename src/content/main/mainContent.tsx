@@ -47,11 +47,13 @@ export const principles = (
 
 			Assuming two scripts perform the same task, then: <br/>
 			<br/>
-			<ul className='text-xl text-mauve-200'>
-				<li>Code that is easier to read is better ✔</li>
-				<li>Code that runs faster is better ✔</li>
-				<li>Code that is more flexible is better ✔</li>
-			</ul>
+		</p>
+		<ul className='text-xl text-mauve-200'>
+			<li>Code that is easier to read is better ✔</li>
+			<li>Code that runs faster is better ✔</li>
+			<li>Code that is more flexible is better ✔</li>
+		</ul>
+		<p>
 			<br/>
 			Each of these points are nuanced and merit further discussion. But before we explore them, we need to develop an intuition 
 			for the coding landscape. If I were to ask you to solve a problem, you have no framework with which to approach this. 
@@ -70,7 +72,8 @@ export const syntax =(
 			rules, the meaning becomes unclear or incomprehensible.
 			<br/><br/>
 			Python's syntax is relatively forgiving compared to other programming languages, but there is one rule that is absolutely 
-			critical: <span className='keyword'>indentation</span>. 
+			critical:<br/>
+			<span className='keyword ml-8'>indentation</span>. 
 			<br/>
 			<b>Indentation</b> refers to the blank spaces at the beginning of a line of code. In Python, indentation is 
 			not just for readability—it's functional. It tells Python which lines of code belong together as a group.
@@ -107,19 +110,23 @@ export const types = (
 			of decoding it. Python explains this to the CPU implicitly for us based on how we input the data. How we write data defines the 
 			data type of the information being sent to the CPU. There are only 4 data types you need to concern yourself with today: <br/>
 			<br/>
-
-			<ul>
-				<li>Float</li>
-				<li>Int</li>
-				<li>String</li>
-				<li>Bool</li>
-			</ul>
+		</p>
+		<ul>
+			<li><b><span className='highlight'>Float</span></b> – <span className='text-[var(--text-dim)]'>Fractional numbers or decimals: <b>4.5</b></span></li>
+			<li><b><span className='highlight'>Int</span></b>– <span className='text-[var(--text-dim)]'>Whole numbers: <b>4</b></span></li>
+			<li><b><span className='highlight'>String</span></b>– <span className='text-[var(--text-dim)]'>Unicode characters like what you are reading now.</span></li>
+			<li><b><span className='highlight'>Bool</span></b>– <span className='text-[var(--text-dim)]'>Logical 
+				states: <span className='text-[var(--ok)]'>True</span>/<span className='text-[var(--err)]'>False</span></span></li>
+		</ul>
+		<p>
 			<br/>
-			Float and int are number data and as such, can be manipulated exactly as you would expect. In Python, ints and floats can be manipulated 
-			together without thought. You can apply any operation to a float with an int and vice versa. This may seem like something trivial 
-			to mention, of course you can add an integer number to a float or decimal number. But don’t forget, in the computer world we aren’t 
-			dealing with numbers the way humans think about them. Numbers are 0s and 1s. And how you add 0s and 1s together to achieve the kind 
-			of math you are familiar with depends on the data type. 1.0 + 2.0 is a completely different shuffling of 0s and 1s compared to 1 + 2. 
+			<span className='highlight'>Float</span> and <span className='highlight'>Int</span> are number data and as such, can be manipulated exactly as you would expect. 
+			In Python, ints and floats can be manipulated together without thought. You can apply any operation to a float with an int and vice versa. This may seem like something trivial 
+			to mention, of course you can add an integer number to a <span className='highlight'>float</span> or decimal number. But don’t forget, in the computer world we aren’t 
+			dealing with numbers the way humans think about them. Numbers are <span className='highlight'>0</span>s and <span className='highlight'>1</span>s. 
+			And how you add <span className='highlight'>0</span>s and <span className='highlight'>1</span>s together to achieve the kind 
+			of math you are familiar with depends on the data type. <span className='code-inline'>1.0 + 2.0</span> is a completely different shuffling of 0s and 1s compared 
+			to <span className='code-inline'>1 + 2</span>. 
 			For convenience sake,  Python converts all int datatypes into floats anytime they are used together in a calculation. As a result, a user 
 			will never notice and may never consider why that shouldn’t be the case. Below, try running some simple arithmetic operations: <br/>
 		</p>
@@ -133,16 +140,16 @@ print(4.0 + 5)`}
 			<br/><br/> 
 			The string type belongs to text-like data. It is denoted by writing information wrapped in quotations. <b className='text-white text-xl'>"</b>
 			Either with a double quote<b className='text-white text-xl'>"</b> or <b className='text-white text-xl'>'</b>with a single quote<b className='text-white text-xl'>'</b>. 
-			It’s up to you which you like more. Just like how 1 + 2 was different from 1.0 + 2.0,  “1” + “2”  is yet another 
-			operation of 0s and 1s. For this reason, operations cannot be performed between str and number types. Below try to add “1” + 2
+			It’s up to you which you like more. Just like how <span className='code-inline'>1 + 2</span> was different from <span className='code-inline'>1.0 + 2.0</span>,  <span className='code-inline'>“1” + “2”</span> is 
+			yet another operation of 0s and 1s. For this reason, operations cannot be performed between str and number types.
 		</p>
 		<CodeCell>
 			"1" + 2
 		</CodeCell>
 		<p>
-			Unlike with ints and floats—where one can always be converted into the other—str data types cannot always be interpreted as a number 
-			and so python will not even try. However, because all data types are simply 0s and 1s, we can of course convert or cast one datatype 
-			into another. The float( ) function used below converts whatever data is inside to a float (if possible). 
+			Unlike with <span className='highlight'>int</span>s and <span className='highlight'>float</span>s—where one can always be converted into the other—<span className='highlight'>str</span> data 
+			types cannot always be interpreted as a number and so python will not even try. However, because all data types are simply 0s and 1s, we can of course convert or cast one datatype 
+			into another. The <span className='code-inline'>float( )</span> function used below converts whatever data is inside to a float (if possible). 
 		</p>
 		<CodeCell>
 			float("1") + 2
@@ -242,7 +249,7 @@ export const functions = (
 			mentioned earlier—any arbitrary length of code, it’s kind of confusing to define a variable like this. 
 		</p>
 		<PythonHighlighter>
-			Something
+user_authentication_status = database.query("users").filter(id=current_user_id).fetch().get("is_authenticated")
 		</PythonHighlighter>
 		<p>
 			Remember, variables are an art in balancing clarity against conciseness. When we pair an easy to read variable name with a large 
@@ -250,7 +257,10 @@ export const functions = (
 			Or maybe we want to run the same operation but on different values. These limitations are addressed through the use of Functions
 		</p>
 		<PythonHighlighter>
-			Something
+{`def calculate_average_grade(scores):
+    total = sum(scores)
+    average = total / len(scores)
+    return round(average, 1)`}
 		</PythonHighlighter>
 		<p>
 			A function is a reusable block of code designed to perform a specific task. Rather than writing the same code over and over, 
@@ -271,10 +281,13 @@ export const functions = (
 				<span className='text-[var(--text-dim)]'>All the code that makes up the function must be indented. This tells Python which lines belong to the function.</span></li>
 		</ol>
 		<br/>
-		<PythonHighlighter>
+		<CodeCell>
 {`def function_name(): 
-	# function code goes here `}
-		</PythonHighlighter>
+	# function code goes here 
+	print("Function executed")
+# Execute functions by typing it without the def
+function_name()`}
+		</CodeCell>
 	</div>
 )
 
