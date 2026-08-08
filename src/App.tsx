@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import Header from './components/Header'
+import { Header, Section, TableOfContents } from './components'
 import Footer from './components/Footer'
-import Section from './components/Section'
-import { sections } from './content/sections'
+import { sections, tableOfContents } from './content/sections'
 import './App.css'
 import { getPyodide } from './pyodide/pyodideProvider'
+
 export default function App() {
 	const scrollerRef = useRef<HTMLElement>(null)
 	const sectionRefs = useRef<(HTMLElement | null)[]>([])
@@ -38,6 +38,13 @@ export default function App() {
 	return (
 		<>
 		<Header />
+		<TableOfContents
+			className='top-50'
+			items={tableOfContents}
+			activeId={activeIndex}
+			progress={(activeIndex / (tableOfContents.length - 1)) * 100}
+			onItemClick={goTo}
+		/>
 		<main className="scroller" ref={scrollerRef}>
 			{sections.map((s, i) => (
 			<Section

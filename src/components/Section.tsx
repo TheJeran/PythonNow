@@ -7,7 +7,7 @@ interface SectionProps{
   children?: React.ReactNode,
 }
 
-const Section = forwardRef<HTMLElement, SectionProps>(function Section(
+export const Section = forwardRef<HTMLElement, SectionProps>(function Section(
 	{ eyebrow, title, children} : SectionProps,
 	ref,) {
 	return (
@@ -20,5 +20,3 @@ const Section = forwardRef<HTMLElement, SectionProps>(function Section(
 	</section>
 	)
 	})
-
-export default Section

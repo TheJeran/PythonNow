@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react';
 import './Footer.css'
 
 interface Footer{
-  sections: { id: string; eyebrow: string; title: string; body: string; code: string; }[]
+  sections: { id: string; eyebrow: string; title: string; body: ReactNode }[]
   activeIndex: number,
   onNavigate: Function
 }

@@ -1,32 +1,12 @@
 import type { ReactNode } from 'react'
-import Markdown from 'react-markdown'
-import ShikiHighlighter from 'react-shiki'
-import remarkGfm from 'remark-gfm'
 import * as Sections from './main/main'
-
-const dedent = (str: string) => str.replace(/^[ \t]+/gm, '');
+import type { TocItem } from '../components/TableofContents'
 
 interface SectionConfig {
   id: string
   eyebrow: string
   title: string
   body: ReactNode
-}
-
-const PythonHighlighter = ({children} : {children: ReactNode}) => {
-	return(
-		<ShikiHighlighter language={'py'} theme={'dark-plus'}>
-			{children as string}
-		</ShikiHighlighter>
-	)
-}
-
-const ReMarkdown = ({children} : {children: ReactNode}) => {
-	return(
-		<Markdown remarkPlugins={[remarkGfm]}>
-			{children as string}
-		</Markdown>
-	)
 }
 
 export const sections: SectionConfig[] = [
@@ -43,15 +23,76 @@ export const sections: SectionConfig[] = [
     body: Sections.principles
   },
   {
+    id: 'syntax',
+    eyebrow: '02 — Syntax',
+    title: 'Proper "Grammar"',
+    body: Sections.syntax
+  },
+  {
     id: 'types',
-    eyebrow: '02 — Data-types',
-    title: 'Repeating yourself, on purpose',
+    eyebrow: '03 — Data-types',
+    title: 'How Computers Read',
     body: Sections.types
   },
   {
+    id: 'variables',
+    eyebrow: '04 — Variables',
+    title: 'How Humans Read',
+    body: Sections.variables,
+  },
+  {
     id: 'functions',
-    eyebrow: '03 — Functions',
-    title: 'Packaging up behaviour',
-    body: 'Functions let you name a piece of logic and reuse it.',
+    eyebrow: '05 — Functions',
+    title: 'Bundling Behaviour',
+    body: Sections.functions,
+  },
+  {
+    id: 'conditionals',
+    eyebrow: '06 — Conditionals',
+    title: 'Making decisions',
+    body: Sections.conditionals,
+  },
+  {
+    id: 'loops',
+    eyebrow: '07 — Loops',
+    title: 'Repeating yourself, on purpose',
+    body: Sections.loops,
+  }
+]
+
+const tocLabels = Object.values(sections).map(v => v.eyebrow)
+
+export const tableOfContents: TocItem[] = [
+  {
+    id: 0,
+    label: tocLabels[0],
+  },
+  {
+    id: 1,
+    label: tocLabels[1],
+  },
+  {
+    id: 2,
+    label: tocLabels[2],
+  },
+  {
+    id: 3,
+    label: tocLabels[3],
+  },
+  {
+    id: 4,
+    label: tocLabels[4],
+  },
+  {
+    id: 5,
+    label: tocLabels[5],
+  },
+  {
+    id: 6,
+    label: tocLabels[6],
+  },
+  {
+    id: 7,
+    label: tocLabels[7],
   },
 ]

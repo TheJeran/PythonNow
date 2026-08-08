@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Editor, { type BeforeMount, type OnMount } from "@monaco-editor/react";
 import { shikiToMonaco } from "@shikijs/monaco";
 import type { PyodideInterface } from "pyodide";
@@ -9,76 +9,99 @@ interface CodeCellProps {
   children?: React.ReactNode;
 }
 
-const CodeCell: React.FC<CodeCellProps> = ({ children }) => {
-  const initialCode = typeof children === 'string' ? children : String(children ?? '');
-  const [code, setCode] = useState<string>(initialCode);
-  const [output, setOutput] = useState("");
-  const [isRunning, setIsRunning] = useState(false);
+export const CodeCell: React.FC<CodeCellProps> = ({ children }) => {
+	const initialCode = typeof children === 'string' ? children : String(children ?? '');
+	const [code, setCode] = useState<string>(initialCode);
+	const [output, setOutput] = useState("");
+	const [isRunning, setIsRunning] = useState(false);
+	const [height, setHeight] = useState(120)
 
-  const pyodideRef = useRef<PyodideInterface | null>(null);
-  const runRef = useRef<() => void>(() => {});
+	const pyodideRef = useRef<PyodideInterface | null>(null);
+	const runRef = useRef<() => void>(() => {});
 
-  const handleRun = useCallback(async () => {
-    setIsRunning(true);
-    setOutput("");
-    try {
-      if (!pyodideRef.current) {
-        pyodideRef.current = await getPyodide();
-      }
-      const pyodide = pyodideRef.current;
+	const handleRun = useCallback(async () => {
+		setIsRunning(true);
+		setOutput("");
+		try {
+		if (!pyodideRef.current) {
+			pyodideRef.current = await getPyodide();
+		}
+		const pyodide = pyodideRef.current;
 
-      pyodide.setStdout({ batched: (m) => setOutput((p) => p + m + "\n") });
-      pyodide.setStderr({ batched: (m) => setOutput((p) => p + m + "\n") });
+		pyodide.setStdout({ batched: (m) => setOutput((p) => p + m + "\n") });
+		pyodide.setStderr({ batched: (m) => setOutput((p) => p + m + "\n") });
 
-      const result = await pyodide.runPythonAsync(code);
-      if (result !== undefined) setOutput((p) => p + String(result));
-    } catch (err) {
-      setOutput((p) => p + "\n" + String(err));
-    } finally {
-      setIsRunning(false);
-    }
-  }, [code]);
+		const result = await pyodide.runPythonAsync(code);
+		if (result !== undefined) setOutput((p) => p + String(result));
+		} catch (err) {
+		setOutput((p) => p + "\n" + String(err));
+		} finally {
+		setIsRunning(false);
+		}
+	}, [code]);
 
-  runRef.current = handleRun;
+	runRef.current = handleRun;
 
-  const handleBeforeMount: BeforeMount = async (monaco) => {
-    const highlighter = await getShikiHighlighter();
-    shikiToMonaco(highlighter, monaco);
-  };
+	useEffect(()=>{
+		const lineCount = code.split("\n").length;
+		setHeight(lineCount * 20 + 20)
+	},[code])
 
-  const handleMount: OnMount = (editor, monaco) => {
-    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () =>
-      runRef.current()
-    );
-  };
+	const handleBeforeMount: BeforeMount = async (monaco) => {
+		const highlighter = await getShikiHighlighter();
+		shikiToMonaco(highlighter, monaco);
+	};
 
-  return (
-    <div style={styles.container}>
-      <Editor
-        height="180px"
-        defaultLanguage="python"
-        value={code}
-        beforeMount={handleBeforeMount}
-        onMount={handleMount}
-        onChange={(v) => setCode(v ?? "")}
-        options={{
-          minimap: { enabled: false },
-          fontSize: 14,
-          fontFamily: "Menlo, Monaco, monospace",
-          scrollBeyondLastLine: false,
-          padding: { top: 12 },
-        }}
-      />
+	const handleMount: OnMount = (editor, monaco) => {
+		editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () =>
+		runRef.current()
+		);
+	};
 
-      <div style={styles.toolbar}>
-        <span style={styles.hint}>⌘/Ctrl + Enter to run</span>
-        <button style={styles.button} onClick={handleRun} disabled={isRunning}>
-          {isRunning ? "Running…" : "▶ Run"}
-        </button>
-      </div>
-      {output && <pre style={styles.output}>{output}</pre>}
-    </div>
-  );
+  	return (
+		<div style={styles.container}>
+		<Editor
+			height={`${height?? 120}px`}
+			defaultLanguage="python"
+			value={code}
+			beforeMount={handleBeforeMount}
+			onMount={handleMount}
+			onChange={(v) => setCode(v ?? "")}
+			options={{
+			minimap: { enabled: false },
+			fontSize: 14,
+			fontFamily: "Menlo, Monaco, monospace",
+			scrollBeyondLastLine: false,
+			padding: { top: 12 },
+			}}
+		/>
+
+		<div style={styles.toolbar}>
+			<span style={styles.hint}>⌘/Ctrl + Enter to run</span>
+			<button style={styles.button} onClick={handleRun} disabled={isRunning}>
+			{isRunning ? "Running…" : "▶ Run"}
+			</button>
+		</div>
+		{output &&          
+			<pre style={{ ...styles.output, position: 'relative' }}>
+				<button
+				style={{
+					...styles.button,
+					background:'#990000',
+					position:'absolute',
+					right:'10px',
+					top:'10px',
+					cursor:'pointer'
+				}}
+				onClick={()=>setOutput("")}
+				>
+				Clear
+				</button>
+				{output}
+			</pre>
+		}
+		</div>
+	);
 };
 
 const styles: Record<string, React.CSSProperties> = {
@@ -120,5 +143,3 @@ const styles: Record<string, React.CSSProperties> = {
     borderTop: "1px solid #2d2d2d",
   },
 };
-
-export default CodeCell;

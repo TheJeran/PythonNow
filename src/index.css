@@ -32,6 +32,19 @@ html, body, #root {
     list-style-type: disc;
     padding-left: 4rem;
   }
+  ol {
+    list-style-type: decimal;
+    padding-left: 4rem;
+  }
+  ol li{
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.keyword{
+  color: #6fbf8b;
+  font-size: 22px;
 }
 
 body {
