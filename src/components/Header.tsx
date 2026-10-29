@@ -1,11 +1,12 @@
+import { Link } from 'react-router'
 import './Header.css'
 
 export function Header() {
   return (
     <header className="header">
-      <span className="header-logo">
+      <Link className="header-logo" to="/" state={{ jump: true }}>
         py<span className="header-logo-accent">.</span>school
-      </span>
+      </Link>
       <a
         className="header-link"
         href="https://github.com"

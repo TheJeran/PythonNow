@@ -17,6 +17,18 @@
 
   --header-h: 4rem;
   --footer-h: 3.25rem;
+  --sidebar-w: 17rem;
+
+  color-scheme: dark;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 0px;
+  }
+  .sidebar {
+    display: none;
+  }
 }
 
 .highlight{

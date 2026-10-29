@@ -1,0 +1,149 @@
+.sidebar {
+  position: fixed;
+  top: var(--header-h);
+  bottom: 0;
+  left: 0;
+  width: var(--sidebar-w);
+  overflow-y: auto;
+  padding: 1rem 1rem 3rem 1.5rem;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  scrollbar-color: var(--border) transparent;
+  z-index: 5;
+}
+
+.sidebar-module + .sidebar-module {
+  margin-top: 1.75rem;
+}
+
+.sidebar-module-title {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.sidebar-module-title:hover,
+.sidebar-module-title.is-active {
+  color: var(--accent);
+}
+
+.sidebar-module-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.sidebar-toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sidebar-chevron {
+  width: 1.1rem;
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: transform 150ms ease-out;
+}
+
+.sidebar-chevron:hover {
+  color: var(--text);
+}
+
+.sidebar-chevron.is-open {
+  transform: rotate(90deg);
+}
+
+.sidebar-group {
+  margin: 0.6rem 0 0 0.6rem;
+}
+
+.sidebar-group-title {
+  padding: 0.2rem 0;
+  border: none;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.sidebar-group-title:hover {
+  color: var(--text);
+}
+
+.sidebar-count {
+  margin-left: 0.25rem;
+  opacity: 0.6;
+}
+
+.sidebar-group .sidebar-list {
+  margin: 0.25rem 0 0 0.55rem;
+}
+
+/* Undo the global list indentation from index.css */
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-list {
+  border-left: 1px solid var(--border);
+}
+
+.sidebar-link,
+.sidebar-section {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.3rem 0 0.3rem 0.85rem;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+}
+
+.sidebar-link:hover,
+.sidebar-section:hover {
+  color: var(--text);
+}
+
+.sidebar-link.is-active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+.sidebar-link.is-exercise::before {
+  content: '▸ ';
+  color: var(--ok);
+}
+
+.sidebar-sections {
+  margin: 0.1rem 0 0.4rem;
+}
+
+.sidebar-section {
+  padding-left: 1.6rem;
+  font-size: 0.8rem;
+}
+
+.sidebar-section.is-nested {
+  padding-left: 2.4rem;
+}
+
+.sidebar-section.is-active {
+  color: var(--text);
+}

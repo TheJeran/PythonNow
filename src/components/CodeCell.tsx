@@ -53,8 +53,9 @@ export const CodeCell: React.FC<CodeCellProps> = ({ children }) => {
 	};
 
 	const handleMount: OnMount = (editor, monaco) => {
-		editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () =>
-		runRef.current()
+		console.log("Mounted")
+		editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => 
+			runRef.current()
 		);
 	};
 
@@ -63,6 +64,8 @@ export const CodeCell: React.FC<CodeCellProps> = ({ children }) => {
 		<Editor
 			height={`${height?? 120}px`}
 			defaultLanguage="python"
+			// Must be a theme loaded by the Shiki highlighter; Monaco's default ("light") throws once Shiki takes over theming
+			theme="dark-plus"
 			value={code}
 			beforeMount={handleBeforeMount}
 			onMount={handleMount}
@@ -75,9 +78,8 @@ export const CodeCell: React.FC<CodeCellProps> = ({ children }) => {
 			padding: { top: 12 },
 			}}
 		/>
-
 		<div style={styles.toolbar}>
-			<span style={styles.hint}>⌘/Ctrl + Enter to run</span>
+			{/* <span style={styles.hint}>⌘/Ctrl + Enter to run</span> */}
 			<button style={styles.button} onClick={handleRun} disabled={isRunning}>
 			{isRunning ? "Running…" : "▶ Run"}
 			</button>

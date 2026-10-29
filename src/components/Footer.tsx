@@ -1,10 +1,9 @@
-import type { ReactNode } from 'react';
 import './Footer.css'
 
 interface Footer{
-  sections: { id: string; eyebrow: string; title: string; body: ReactNode }[]
+  sections: { id: string; eyebrow: string }[]
   activeIndex: number,
-  onNavigate: Function
+  onNavigate: (index: number) => void
 }
 
 export default function Footer({ sections, activeIndex, onNavigate }: Footer) {
