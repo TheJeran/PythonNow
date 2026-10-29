@@ -2,4 +2,92 @@
   height: 100vh;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
+  margin-left: var(--sidebar-w);
+}
+
+/* Exercises and 404 open on top of the scroller, right of the sidebar */
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: var(--sidebar-w);
+  overflow-y: auto;
+  background: var(--bg);
+  z-index: 6;
+}
+
+.page {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 2rem) 1.5rem 4rem;
+}
+
+.page-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem;
+}
+
+.page-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.page-prose {
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  margin-bottom: 1.5rem;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: var(--text);
+  border-color: var(--accent-dim);
+}
+
+/* End-of-module link to the next module */
+.next-module {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 2.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none;
+}
+
+.next-module:hover {
+  border-color: var(--accent-dim);
+  background: var(--surface-2);
+}
+
+.next-module-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.next-module-title {
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+
+.next-module-end {
+  margin-top: 2.5rem;
 }
